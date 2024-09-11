@@ -1,0 +1,38 @@
+import java.util.*;
+public class AccountTest {
+   public AccountTest() {
+   }
+
+   public static void main(String[] args) {
+      Account myAcc = new Account();
+      Account urAcc = new Account();
+      Account acc1 = new Account(125, "Mina", 20000.0F);
+      
+      myAcc.setAcctNum(123);
+      myAcc.setAcctName("Joshua");
+      myAcc.setAcctBal(35000.0F);
+      
+      urAcc.setAcctNum(124);
+      urAcc.setAcctName("Ravelo");
+      urAcc.setAcctBal(45000.0F);
+      
+      myAcc.deposit(5000.0F);
+      System.out.println("Amount to deposit: 5000.0");
+      myAcc.transferAmount(5000.0F, urAcc);
+      myAcc.displayInfo();
+      
+      urAcc.displayInfo();
+      urAcc.withdraw(5000.0F);
+      System.out.println("Amount to withdraw: 5000.0");
+      urAcc.transferAmount(2000.0F, myAcc);
+      urAcc.displayInfo();
+      
+      acc1.displayInfo();
+      acc1.withdraw(3000.0F);
+      System.out.println("Amount to withdraw: 3000.0");
+      acc1.transferAmount(1000.0F, myAcc);
+      acc1.displayInfo();
+      
+      System.out.println("Account instantiated: " + Account.getCount());
+   }
+}

@@ -1,0 +1,90 @@
+public class Account {
+   public int acctNum;
+   public String acctName;
+   public float acctBal;
+   public static int count = 0;
+
+   public Account() {
+      ++count;
+   }
+
+   public Account(int acctNum, String acctName, float acctBal) {
+      this.acctNum = acctNum;
+      this.acctName = acctName;
+      this.acctBal = acctBal;
+      ++count;
+   }
+   
+   public void setAcctNum(int acctNum) {
+      if (acctNum >= 100 && acctNum <= 999) {
+         this.acctNum = acctNum;
+      }
+
+   }
+
+   public int getAcctNum() {
+      return this.acctNum;
+   }
+
+   public String getAcctName() {
+      return this.acctName;
+   }
+
+   public float getAcctBal() {
+      return this.acctBal;
+   }
+
+   public static int getCount() {
+      return count;
+   }
+
+   public void setAcctName(String acctName) {
+      this.acctName = acctName;
+   }
+
+   public void setAcctBal(float acctBal) {
+      this.acctBal = acctBal;
+   }
+
+   public static void setCount(int count) {
+      Account.count = count;
+   }
+
+   public void deposit(float amount) {
+      if (amount > 0.0F) {
+         this.acctBal += amount;
+      } else {
+         System.out.println("Deposit value should be more than zero.");
+      }
+
+   }
+
+   public void withdraw(float amount) {
+      if (amount > 0.0F && amount <= this.acctBal) {
+         this.acctBal -= amount;
+      } else {
+         System.out.println("Denied. Withdraw amount less than account balance only.");
+      }
+
+   }
+
+   public void displayInfo() {
+      System.out.println("Account Number: " + this.acctNum);
+      System.out.println("Account Name: " + this.acctName);
+      System.out.println("Account Balance: " + this.acctBal);
+      System.out.println();
+   }
+
+   public void transferAmount(float amount, Account acc) {
+      System.out.println("Transferred " + amount + " to " + acc.acctName);
+      if (amount > 0.0F && amount <= this.acctBal) {
+         this.acctBal -= amount;
+         acc.acctBal += amount;
+      } else {
+         System.out.println("Not enough balance.");
+      }
+
+      System.out.println("Remaining balance: " + this.acctBal);
+      System.out.println();
+   }
+}

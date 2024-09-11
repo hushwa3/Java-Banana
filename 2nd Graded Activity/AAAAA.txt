@@ -1,0 +1,145 @@
+//FRACTION
+
+public class Fraction {
+    private int numerator;
+    private int denominator;
+
+    public Fraction(int numerator, int denominator) {
+        this.numerator = numerator;
+        this.denominator = denominator;
+    }
+ 
+    public int getNumerator() {
+        return numerator;
+    }
+
+    public int getDenominator() {
+        return denominator;
+    }
+
+    public void setNumerator(int numerator) {
+        this.numerator = numerator;
+    }
+
+    public void setDenominator(int denominator) {
+        if (denominator != 0) {
+            this.denominator = denominator;
+        } else {
+            System.out.println("Denominator cannot be zero.");
+        }
+    }
+
+    public Fraction add(Fraction other) {
+        int resultNumerator = (this.numerator * other.denominator) + (other.numerator * this.denominator);
+        int resultDenominator = this.denominator * other.denominator;
+        return new Fraction(resultNumerator, resultDenominator);
+    }
+
+    public Fraction subtract(Fraction other) {
+        int resultNumerator = (this.numerator * other.denominator) - (other.numerator * this.denominator);
+        int resultDenominator = this.denominator * other.denominator;
+        return new Fraction(resultNumerator, resultDenominator);
+    }
+
+    public Fraction multiply(Fraction other) {
+        int resultNumerator = this.numerator * other.numerator;
+        int resultDenominator = this.denominator * other.denominator;
+        return new Fraction(resultNumerator, resultDenominator);
+    }
+
+    public Fraction divide(Fraction other) {
+        if (other.numerator != 0) {
+            int resultNumerator = this.numerator * other.denominator;
+            int resultDenominator = this.denominator * other.numerator;
+            return new Fraction(resultNumerator, resultDenominator);
+        } else {
+            System.out.println("Cannot divide by zero.");
+            return null;
+        }
+    }
+    
+    public void displayFraction() {
+        System.out.println(numerator + "/" + denominator);
+    }
+
+    public boolean isAProperFraction() {
+        return Math.abs(numerator) < Math.abs(denominator);
+    }
+
+    public boolean isAnImproperFraction() {
+        return Math.abs(numerator) >= Math.abs(denominator);
+    }
+
+    public Fraction reciprocal() {
+        if (numerator != 0) {
+            return new Fraction(denominator, numerator);
+        } else {
+            System.out.println("Reciprocal is undefined for zero.");
+            return null;
+        }
+    }
+}
+
+
+//FRACTION TEST
+
+import java.util.Scanner;
+public class FractionTest {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the numerator of the first fraction: ");
+        int numerator1 = scanner.nextInt();
+        System.out.print("Enter the denominator of the first fraction: ");
+        int denominator1 = scanner.nextInt();
+
+        Fraction fraction1 = new Fraction(numerator1, denominator1);
+
+        System.out.println();
+        System.out.print("Enter the numerator of the second fraction: ");
+        int numerator2 = scanner.nextInt();
+        System.out.print("Enter the denominator of the second fraction: ");
+        int denominator2 = scanner.nextInt();
+
+        Fraction fraction2 = new Fraction(numerator2, denominator2);
+
+        Fraction sum = fraction1.add(fraction2);
+        System.out.println("");
+        System.out.print("Sum: ");
+        sum.displayFraction();
+
+        Fraction difference = fraction1.subtract(fraction2);
+        System.out.print("Difference: ");
+        difference.displayFraction();
+
+        Fraction product = fraction1.multiply(fraction2);
+        System.out.print("Product: ");
+        product.displayFraction();
+
+        Fraction quotient = fraction1.divide(fraction2);
+        System.out.print("Quotient: ");
+        if (quotient != null) {
+            quotient.displayFraction();
+        }
+
+        System.out.println("");
+        System.out.println("Is the Fraction1 a proper fraction? " + fraction1.isAProperFraction());
+        System.out.println("Is the Fraction1 an improper fraction? " + fraction1.isAnImproperFraction());
+       
+        System.out.println("Is the Fraction2 a proper fraction? " + fraction2.isAProperFraction());
+        System.out.println("Is the Fraction2 an improper fraction? " + fraction2.isAnImproperFraction());
+
+        Fraction reciprocal = fraction1.reciprocal();
+        System.out.print("Reciprocal of fraction 1: ");
+        if (reciprocal != null) {
+            reciprocal.displayFraction();
+        }
+        
+        Fraction reciprocal2 = fraction2.reciprocal();
+        System.out.print("Reciprocal of fraction 2: ");
+        if (reciprocal2 != null) {
+        reciprocal2.displayFraction();
+        }
+        scanner.close();
+    }
+}

@@ -1,0 +1,82 @@
+public class Quadratic {
+    private int a;
+    private int b;
+    private int c;
+
+    public Quadratic(int a, int b, int c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+
+    public int getC() {
+        return c;
+    }
+
+    public void setC(int c) {
+        this.c = c;
+    }
+
+    public int evaluate(int x) {
+        return a * x * x + b * x + c;
+    }
+
+    public int getDiscriminant() {
+        return b * b - 4 * a * c;
+    }
+
+    public boolean isImaginary() {
+        return getDiscriminant() < 0;
+    }
+
+    public double getFirstRoot() {
+        return (-b + Math.sqrt(getDiscriminant())) / (2.0 * a);
+    }
+
+    public double getSecondRoot() {
+        return (-b - Math.sqrt(getDiscriminant())) / (2.0 * a);
+    }
+
+    public boolean isPerfectSquare() {
+        return getDiscriminant() == 0;
+    }
+
+    public Quadratic add(Quadratic other) {
+        return new Quadratic(this.a + other.getA(), this.b + other.getB(), this.c + other.getC());
+    }
+
+    public void displayQuadratic(String equationName) {
+        System.out.println(equationName + ": " + a + "x^2 + " + b + "x + " + c + " = 0");
+    }
+
+    public void checkRoots() {
+    double discriminant = getDiscriminant();
+
+    if (discriminant > 0) {
+        System.out.println("Real roots");
+        System.out.println("First Root: " + getFirstRoot());
+        System.out.println("Second Root: " + getSecondRoot());
+    } else if (discriminant == 0) {
+        System.out.println("Repeated real roots");
+        System.out.println("Root: " + getFirstRoot());
+    } else {
+        System.out.println("Imaginary roots");
+    }
+  }
+}

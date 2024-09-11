@@ -1,0 +1,119 @@
+public class Quadratic {
+    private int a;
+    private int b;
+    private int c;
+
+    public Quadratic(int a, int b, int c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+
+    public int getC() {
+        return c;
+    }
+
+    public void setC(int c) {
+        this.c = c;
+    }
+
+    public int evaluate(int x) {
+        return a * x * x + b * x + c;
+    }
+
+    public int getDiscriminant() {
+        return b * b - 4 * a * c;
+    }
+
+    public boolean isImaginary() {
+        return getDiscriminant() < 0;
+    }
+
+    public double getFirstRoot() {
+        return (-b + Math.sqrt(getDiscriminant())) / (2.0 * a);
+    }
+
+    public double getSecondRoot() {
+        return (-b - Math.sqrt(getDiscriminant())) / (2.0 * a);
+    }
+
+    public boolean isPerfectSquare() {
+        return getDiscriminant() == 0;
+    }
+
+    public Quadratic add(Quadratic other) {
+        return new Quadratic(this.a + other.getA(), this.b + other.getB(), this.c + other.getC());
+    }
+
+    public void displayQuadratic(String equationName) {
+        System.out.println(equationName + ": " + a + "x^2 + " + b + "x + " + c + " = 0");
+    }
+
+    public void checkRoots() {
+    double discriminant = getDiscriminant();
+
+    if (discriminant > 0) {
+        System.out.println("Real roots");
+        System.out.println("First Root: " + getFirstRoot());
+        System.out.println("Second Root: " + getSecondRoot());
+    } else if (discriminant == 0) {
+        System.out.println("Repeated real roots");
+        System.out.println("Root: " + getFirstRoot());
+    } else {
+        System.out.println("Imaginary roots");
+    }
+  }
+}
+
+//////
+
+
+public class QuadraticTester {
+    public static void main(String[] args) {
+        Quadratic quadratic1 = new Quadratic(4, 12, 9);
+        Quadratic quadratic2 = new Quadratic(1, 6, 9);
+
+        quadratic1.displayQuadratic("The first equation: ");
+        System.out.println("Discriminant: " + quadratic1.getDiscriminant());
+        quadratic1.checkRoots();
+        
+        if (quadratic1.isPerfectSquare()) {
+            System.out.println("Perfect square");
+        } else {
+            System.out.println("Not a perfect square");
+        }
+        
+        System.out.println();
+
+        quadratic2.displayQuadratic("The second equation: ");
+        System.out.println("Discriminant: " + quadratic2.getDiscriminant());
+        quadratic2.checkRoots();
+        
+        if (quadratic2.isPerfectSquare()) {
+            System.out.println("Perfect square");
+        } else {
+            System.out.println("Not a perfect square");
+        }
+        
+        System.out.println();
+
+        Quadratic sum = quadratic1.add(quadratic2);
+        sum.displayQuadratic("Sum of equations");
+    }
+}
