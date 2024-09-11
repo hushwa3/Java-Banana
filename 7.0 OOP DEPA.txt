@@ -1,0 +1,24 @@
+ABSTRACT
+
+-abstract class, will create empty method 
+example: public abstract void sleep();
+
+how to call in subclass:
+
+public class extends schedule {
+
+public void sleep() {
+
+  }
+}
+
+
+INTERFACE
+-assumes all methods are abstract (no need to put abstract keyword)
+-in interface class, no body should be given to the methods
+
+
+Combination:
+class nameOfClass implements nameOfInterface {
+
+}
